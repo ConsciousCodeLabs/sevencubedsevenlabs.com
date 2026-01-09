@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Best Practices Guide | Patent #65 API</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            line-height: 1.7;
+            color: #1e293b;
+            background: #f8fafc;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #4F46E5 0%, #0ea5e9 100%);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+            margin: -2rem -2rem 2rem -2rem;
+        }
+        
+        .header h1 {
+            font-size: 2.25rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .header p {
+            opacity: 0.9;
+            font-size: 1.1rem;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+        
+        h2 {
+            font-size: 1.5rem;
+            color: #4F46E5;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        h3 {
+            font-size: 1.15rem;
+            color: #1e293b;
+            margin: 1.5rem 0 0.75rem;
+        }
+        
+        h4 {
+            font-size: 1rem;
+            color: #475569;
+            margin: 1rem 0 0.5rem;
+        }
+        
+        p {
+            margin-bottom: 0.75rem;
+            color: #475569;
+        }
+        
+        ul, ol {
+            margin: 0.5rem 0 1rem 1.5rem;
+            color: #475569;
+        }
+        
+        li {
+            margin-bottom: 0.4rem;
+        }
+        
+        .warning {
+            background: linear-gradient(135deg, #FEF3C7 0%, #FDE68A 100%);
+            border-left: 4px solid #f59e0b;
+            padding: 1rem 1.25rem;
+            border-radius: 0 8px 8px 0;
+            margin: 1rem 0;
+        }
+        
+        .warning p {
+            color: #92400e;
+            margin: 0;
+        }
+        
+        .success {
+            background: linear-gradient(135deg, #D1FAE5 0%, #A7F3D0 100%);
+            border-left: 4px solid #10b981;
+            padding: 1rem 1.25rem;
+            border-radius: 0 8px 8px 0;
+            margin: 1rem 0;
+        }
+        
+        .success p {
+            color: #065f46;
+            margin: 0;
+        }
+        
+        .info {
+            background: linear-gradient(135deg, #EEF2FF 0%, #E0E7FF 100%);
+            border-left: 4px solid #4F46E5;
+            padding: 1rem 1.25rem;
+            border-radius: 0 8px 8px 0;
+            margin: 1rem 0;
+        }
+        
+        .info p {
+            color: #3730a3;
+            margin: 0;
+        }
+        
+        code {
+            font-family: 'JetBrains Mono', monospace;
+            background: #f1f5f9;
+            padding: 0.15rem 0.4rem;
+            border-radius: 4px;
+            font-size: 0.85rem;
+        }
+        
+        pre {
+            background: #1e293b;
+            color: #e2e8f0;
+            padding: 1.25rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            margin: 1rem 0;
+        }
+        
+        pre .comment { color: #64748b; }
+        pre .string { color: #a5d6ff; }
+        pre .keyword { color: #ff7b72; }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+            font-size: 0.9rem;
+        }
+        
+        th {
+            background: #4F46E5;
+            color: white;
+            padding: 0.75rem;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        td {
+            padding: 0.75rem;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        tr:nth-child(even) {
+            background: #f8fafc;
+        }
+        
+        .pathway-box {
+            display: inline-block;
+            background: #4F46E5;
+            color: white;
+            padding: 0.25rem 0.6rem;
+            border-radius: 6px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            margin: 0.2rem;
+        }
+        
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+        
+        .mini-card {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 1rem;
+        }
+        
+        .mini-card h4 {
+            color: #4F46E5;
+            margin-top: 0;
+        }
+        
+        .diagram {
+            background: #f8fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            margin: 1rem 0;
+        }
+        
+        .flow-arrow {
+            color: #4F46E5;
+            font-size: 1.5rem;
+            margin: 0.5rem 0;
+        }
+        
+        .flow-box {
+            background: white;
+            border: 2px solid #4F46E5;
+            border-radius: 8px;
+            padding: 0.75rem 1rem;
+            display: inline-block;
+            margin: 0.25rem;
+        }
+        
+        .toc {
+            background: #f8fafc;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .toc h3 {
+            margin-top: 0;
+            color: #4F46E5;
+        }
+        
+        .toc ol {
+            margin-bottom: 0;
+        }
+        
+        .toc a {
+            color: #4F46E5;
+            text-decoration: none;
+        }
+        
+        .toc a:hover {
+            text-decoration: underline;
+        }
+        
+        @media (max-width: 768px) {
+            .grid-2 { grid-template-columns: 1fr; }
+            .header { padding: 2rem 1rem; margin: -2rem -1rem 2rem -1rem; }
+            .container { padding: 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🔐 Customer Best Practices Guide</h1>
+            <p>How to effectively use the Patent #65 API for maximum security</p>
+        </div>
+
+        <!-- Table of Contents -->
+        <div class="toc">
+            <h3>📋 Table of Contents</h3>
+            <ol>
+                <li><a href="#golden-rule">The Golden Rule</a></li>
+                <li><a href="#understanding">Understanding What You Receive</a></li>
+                <li><a href="#key-management">Key Management Strategies</a></li>
+                <li><a href="#pathway-strategy">Pathway Selection Strategy</a></li>
+                <li><a href="#file-organization">File Organization System</a></li>
+                <li><a href="#security-tiers">Security Tiers Framework</a></li>
+                <li><a href="#workflows">Common Workflows</a></li>
+                <li><a href="#dos-donts">Do's and Don'ts</a></li>
+            </ol>
+        </div>
+
+        <!-- Golden Rule -->
+        <div class="card" id="golden-rule">
+            <h2>🏆 1. The Golden Rule</h2>
+            
+            <div class="warning">
+                <p><strong>⚠️ CRITICAL:</strong> You need ALL THREE components to decrypt your data: <strong>Ciphertext + Key + Pathway</strong>. Lose ANY ONE of them, and your data is PERMANENTLY UNRECOVERABLE. Not even we can help you—we don't store anything.</p>
+            </div>
+
+            <div class="diagram">
+                <div class="flow-box">🔓 Your Data</div>
+                <div class="flow-arrow">↓ ENCRYPT</div>
+                <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
+                    <div class="flow-box">📄 Ciphertext</div>
+                    <div class="flow-box">🔑 Key</div>
+                    <div class="flow-box">🛤️ Pathway</div>
+                </div>
+                <div class="flow-arrow">↓ DECRYPT (need all 3!)</div>
+                <div class="flow-box">🔓 Your Data</div>
+            </div>
+
+            <div class="success">
+                <p><strong>✅ Best Practice:</strong> Always store these three components in DIFFERENT locations. If someone gets your encrypted file, they still can't decrypt without the key AND pathway.</p>
+            </div>
+        </div>
+
+        <!-- Understanding What You Receive -->
+        <div class="card" id="understanding">
+            <h2>📦 2. Understanding What You Receive</h2>
+            
+            <p>When you call <code>/encrypt</code>, you receive a JSON response with everything you need:</p>
+
+            <pre>{
+  <span class="string">"ciphertext"</span>: <span class="string">"4b17524655923e55bb8a9c..."</span>,  <span class="comment">// Your encrypted data</span>
+  <span class="string">"key"</span>: <span class="string">"5c7c2580f4af820e73e07f1ab..."</span>,       <span class="comment">// 64-character hex key</span>
+  <span class="string">"pathway_used"</span>: [3, 3, 3, 3],              <span class="comment">// Which route through 4 shells</span>
+  <span class="string">"encryption_time_ms"</span>: 0.23,               <span class="comment">// Performance metric</span>
+  <span class="string">"shells_traversed"</span>: 4,                    <span class="comment">// Always 4</span>
+  <span class="string">"ciphertext_size"</span>: 156,                   <span class="comment">// Bytes</span>
+  <span class="string">"plaintext_size"</span>: 100                      <span class="comment">// Original size</span>
+}</pre>
+
+            <h3>Component Breakdown:</h3>
+            <table>
+                <tr>
+                    <th>Component</th>
+                    <th>What It Is</th>
+                    <th>Security Level</th>
+                    <th>Can Be Stored</th>
+                </tr>
+                <tr>
+                    <td><strong>Ciphertext</strong></td>
+                    <td>Your encrypted data (unreadable)</td>
+                    <td>Safe to store anywhere</td>
+                    <td>Cloud, database, public ✅</td>
+                </tr>
+                <tr>
+                    <td><strong>Key</strong></td>
+                    <td>64-character hex string</td>
+                    <td>⚠️ SENSITIVE</td>
+                    <td>Password manager, secure vault</td>
+                </tr>
+                <tr>
+                    <td><strong>Pathway</strong></td>
+                    <td>4 numbers [1-7, 1-7, 1-7, 1-7]</td>
+                    <td>⚠️ SENSITIVE</td>
+                    <td>With key OR memorized</td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- Key Management -->
+        <div class="card" id="key-management">
+            <h2>🔑 3. Key Management Strategies</h2>
+
+            <h3>Strategy A: Separation (Recommended)</h3>
+            <p>Store each component in a different location:</p>
+            
+            <div class="grid-2">
+                <div class="mini-card">
+                    <h4>📄 Ciphertext</h4>
+                    <ul>
+                        <li>Your regular cloud storage</li>
+                        <li>Database</li>
+                        <li>Even public if needed</li>
+                    </ul>
+                </div>
+                <div class="mini-card">
+                    <h4>🔑 Key + Pathway</h4>
+                    <ul>
+                        <li>Password manager (1Password, Bitwarden)</li>
+                        <li>Hardware security key</li>
+                        <li>Encrypted local file</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3>Strategy B: Key File Method</h3>
+            <p>The file encryption demo at <a href="https://secure.sevencubedsevenlabs.com">secure.sevencubedsevenlabs.com</a> generates a <code>.key</code> file containing both key and pathway:</p>
+
+            <pre>{
+  <span class="string">"key"</span>: <span class="string">"5c7c2580f4af820e73e07f1ab6537c7b..."</span>,
+  <span class="string">"pathway"</span>: [3, 3, 3, 3],
+  <span class="string">"filename"</span>: <span class="string">"document.pdf"</span>,
+  <span class="string">"encrypted_at"</span>: <span class="string">"2026-01-09T10:30:00Z"</span>
+}</pre>
+
+            <div class="info">
+                <p><strong>💡 Tip:</strong> Store the <code>.encrypted</code> file in cloud storage (Google Drive, Dropbox) and the <code>.key</code> file locally or in a password manager. Even if your cloud is breached, attackers can't decrypt without the key file.</p>
+            </div>
+
+            <h3>Strategy C: Database Integration</h3>
+            <p>For applications encrypting database fields:</p>
+
+            <pre><span class="comment">// Example: Storing encrypted SSN</span>
+{
+  <span class="string">"user_id"</span>: 12345,
+  <span class="string">"name"</span>: <span class="string">"John Smith"</span>,
+  <span class="string">"ssn_encrypted"</span>: <span class="string">"4b17524655923e55bb..."</span>,  <span class="comment">// In main DB</span>
+  <span class="string">"ssn_key_ref"</span>: <span class="string">"key_12345_ssn"</span>            <span class="comment">// Reference to key vault</span>
+}
+
+<span class="comment">// Keys stored separately in secure vault (AWS KMS, HashiCorp Vault)</span>
+{
+  <span class="string">"key_12345_ssn"</span>: {
+    <span class="string">"key"</span>: <span class="string">"5c7c2580f4af820e73..."</span>,
+    <span class="string">"pathway"</span>: [4, 2, 6, 3]
+  }
+}</pre>
+        </div>
+
+        <!-- Pathway Strategy -->
+        <div class="card" id="pathway-strategy">
+            <h2>🛤️ 4. Pathway Selection Strategy</h2>
+
+            <p>The pathway <code>[S1, S2, S3, S4]</code> determines which of the 2,401 unique encryption routes your data takes. Each number (1-7) selects a different cryptographic primitive in each shell.</p>
+
+            <h3>Option 1: Consistent Pathways (Easier Management)</h3>
+            <p>Use the same pathway for categories of data:</p>
+
+            <table>
+                <tr>
+                    <th>Data Type</th>
+                    <th>Pathway</th>
+                    <th>Rationale</th>
+                </tr>
+                <tr>
+                    <td>General documents</td>
+                    <td><span class="pathway-box">[3, 3, 3, 3]</span></td>
+                    <td>Balanced, easy to remember</td>
+                </tr>
+                <tr>
+                    <td>Financial records</td>
+                    <td><span class="pathway-box">[5, 2, 1, 4]</span></td>
+                    <td>Compliance-optimized</td>
+                </tr>
+                <tr>
+                    <td>Healthcare/PHI</td>
+                    <td><span class="pathway-box">[4, 5, 2, 6]</span></td>
+                    <td>HIPAA-recommended</td>
+                </tr>
+                <tr>
+                    <td>Maximum security</td>
+                    <td><span class="pathway-box">[7, 7, 7, 7]</span></td>
+                    <td>Highest security primitives</td>
+                </tr>
+            </table>
+
+            <div class="success">
+                <p><strong>✅ Benefit:</strong> With consistent pathways, you only need to remember/store the KEY. The pathway is implicit based on data type.</p>
+            </div>
+
+            <h3>Option 2: Random Pathways (Maximum Security)</h3>
+            <p>Let the API choose random pathways for each encryption:</p>
+
+            <pre><span class="comment">// Don't specify pathway - API generates random</span>
+{
+  <span class="string">"plaintext"</span>: <span class="string">"sensitive data"</span>
+  <span class="comment">// pathway omitted = random selection</span>
+}</pre>
+
+            <div class="warning">
+                <p><strong>⚠️ Important:</strong> With random pathways, you MUST store the pathway with each key. Every encryption uses a different route.</p>
+            </div>
+
+            <h3>Option 3: Recommended Pathways (API-Assisted)</h3>
+            <p>Ask the API for recommendations based on your use case:</p>
+
+            <pre>POST /pathways/recommend
+{
+  <span class="string">"use_case"</span>: <span class="string">"healthcare"</span>,
+  <span class="string">"security_level"</span>: <span class="string">"high"</span>
+}
+
+<span class="comment">// Response:</span>
+{
+  <span class="string">"recommended_pathway"</span>: [4, 5, 2, 6],
+  <span class="string">"rationale"</span>: <span class="string">"Optimized for healthcare with high security"</span>
+}</pre>
+        </div>
+
+        <!-- File Organization -->
+        <div class="card" id="file-organization">
+            <h2>📁 5. File Organization System</h2>
+
+            <h3>Recommended Folder Structure:</h3>
+            <pre>📁 Encrypted_Files/
+├── 📁 Documents/
+│   ├── contract_2026_01.encrypted
+│   ├── tax_return_2025.encrypted
+│   └── medical_records.encrypted
+├── 📁 Keys/                          <span class="comment">← KEEP SEPARATE & SECURE!</span>
+│   ├── contract_2026_01.key
+│   ├── tax_return_2025.key
+│   └── medical_records.key
+└── 📁 Index/
+    └── encryption_log.csv            <span class="comment">← Track what's what</span></pre>
+
+            <h3>Encryption Log Template:</h3>
+            <table>
+                <tr>
+                    <th>Original File</th>
+                    <th>Encrypted File</th>
+                    <th>Date</th>
+                    <th>Pathway</th>
+                    <th>Key Location</th>
+                </tr>
+                <tr>
+                    <td>contract.pdf</td>
+                    <td>contract_2026_01.encrypted</td>
+                    <td>2026-01-09</td>
+                    <td>[3,3,3,3]</td>
+                    <td>1Password</td>
+                </tr>
+                <tr>
+                    <td>tax_2025.xlsx</td>
+                    <td>tax_return_2025.encrypted</td>
+                    <td>2026-01-09</td>
+                    <td>[5,2,1,4]</td>
+                    <td>Keys folder</td>
+                </tr>
+            </table>
+
+            <h3>Naming Convention:</h3>
+            <pre><span class="comment">// Pattern: [description]_[date].[extension]</span>
+
+✅ Good:
+  contract_acme_2026_01.encrypted
+  medical_records_smith.encrypted
+  backup_database_20260109.encrypted
+
+❌ Bad:
+  file1.encrypted          <span class="comment">// What is this?</span>
+  encrypted.encrypted      <span class="comment">// No context</span>
+  asdf.encrypted          <span class="comment">// Meaningless</span></pre>
+        </div>
+
+        <!-- Security Tiers -->
+        <div class="card" id="security-tiers">
+            <h2>🛡️ 6. Security Tiers Framework</h2>
+
+            <p>Not all data needs the same protection level. Use this framework:</p>
+
+            <table>
+                <tr>
+                    <th>Tier</th>
+                    <th>Data Examples</th>
+                    <th>Pathway</th>
+                    <th>Key Storage</th>
+                </tr>
+                <tr>
+                    <td style="background: #D1FAE5;"><strong>🟢 Standard</strong></td>
+                    <td>Internal docs, general files</td>
+                    <td><span class="pathway-box">[1, 1, 1, 1]</span></td>
+                    <td>Password manager</td>
+                </tr>
+                <tr>
+                    <td style="background: #FEF3C7;"><strong>🟡 Elevated</strong></td>
+                    <td>Financial data, PII</td>
+                    <td><span class="pathway-box">[3, 3, 3, 3]</span></td>
+                    <td>Encrypted vault</td>
+                </tr>
+                <tr>
+                    <td style="background: #FED7AA;"><strong>🟠 High</strong></td>
+                    <td>Healthcare (PHI), legal</td>
+                    <td><span class="pathway-box">[5, 5, 5, 5]</span></td>
+                    <td>Hardware security module</td>
+                </tr>
+                <tr>
+                    <td style="background: #FECACA;"><strong>🔴 Maximum</strong></td>
+                    <td>Trade secrets, classified</td>
+                    <td><span class="pathway-box">[7, 7, 7, 7]</span> or random</td>
+                    <td>Air-gapped + physical safe</td>
+                </tr>
+            </table>
+
+            <div class="info">
+                <p><strong>💡 Why Different Tiers?</strong> Higher pathways use more computationally intensive primitives. For most data, [3,3,3,3] is more than sufficient. Reserve [7,7,7,7] for truly critical information.</p>
+            </div>
+        </div>
+
+        <!-- Common Workflows -->
+        <div class="card" id="workflows">
+            <h2>⚡ 7. Common Workflows</h2>
+
+            <h3>Workflow A: Encrypt a Single File</h3>
+            <ol>
+                <li>Go to <a href="https://secure.sevencubedsevenlabs.com">secure.sevencubedsevenlabs.com</a></li>
+                <li>Drag & drop your file</li>
+                <li>Select pathway (or use default [3,3,3,3])</li>
+                <li>Click "Encrypt"</li>
+                <li>Download BOTH files:
+                    <ul>
+                        <li><code>filename.encrypted</code> → Store in cloud/anywhere</li>
+                        <li><code>filename.key</code> → Store securely (password manager)</li>
+                    </ul>
+                </li>
+                <li>Delete original file (if desired)</li>
+            </ol>
+
+            <h3>Workflow B: API Integration (Code)</h3>
+            <pre><span class="comment"># Python example</span>
+<span class="keyword">import</span> requests
+<span class="keyword">import</span> json
+
+<span class="comment"># Encrypt</span>
+response = requests.post(
+    <span class="string">'https://api.sevencubedsevenlabs.com/encrypt'</span>,
+    headers={<span class="string">'Content-Type'</span>: <span class="string">'application/json'</span>},
+    json={
+        <span class="string">'plaintext'</span>: <span class="string">'sensitive data here'</span>,
+        <span class="string">'pathway'</span>: [3, 3, 3, 3]
+    }
+)
+
+result = response.json()
+
+<span class="comment"># Store ciphertext in database</span>
+save_to_db(result[<span class="string">'ciphertext'</span>])
+
+<span class="comment"># Store key + pathway in secure vault</span>
+save_to_vault({
+    <span class="string">'key'</span>: result[<span class="string">'key'</span>],
+    <span class="string">'pathway'</span>: result[<span class="string">'pathway_used'</span>]
+})</pre>
+
+            <h3>Workflow C: Decrypt When Needed</h3>
+            <ol>
+                <li>Retrieve ciphertext from storage</li>
+                <li>Retrieve key + pathway from secure vault</li>
+                <li>Call <code>/decrypt</code> with all three</li>
+                <li>Use the plaintext</li>
+                <li>Clear plaintext from memory when done</li>
+            </ol>
+
+            <pre><span class="comment"># Decrypt</span>
+response = requests.post(
+    <span class="string">'https://api.sevencubedsevenlabs.com/decrypt'</span>,
+    json={
+        <span class="string">'ciphertext'</span>: stored_ciphertext,
+        <span class="string">'key'</span>: vault_data[<span class="string">'key'</span>],
+        <span class="string">'pathway'</span>: vault_data[<span class="string">'pathway'</span>]
+    }
+)
+
+plaintext = response.json()[<span class="string">'plaintext'</span>]
+<span class="comment"># Use it, then clear from memory</span></pre>
+        </div>
+
+        <!-- Do's and Don'ts -->
+        <div class="card" id="dos-donts">
+            <h2>✅❌ 8. Do's and Don'ts</h2>
+
+            <div class="grid-2">
+                <div class="mini-card" style="border-color: #10b981;">
+                    <h4 style="color: #10b981;">✅ DO</h4>
+                    <ul>
+                        <li>Store ciphertext and keys separately</li>
+                        <li>Use a password manager for keys</li>
+                        <li>Keep backups of your keys</li>
+                        <li>Use consistent pathways per data type</li>
+                        <li>Log what you've encrypted</li>
+                        <li>Test decryption after encrypting</li>
+                        <li>Delete plaintext after encrypting</li>
+                        <li>Use HTTPS for all API calls</li>
+                    </ul>
+                </div>
+                <div class="mini-card" style="border-color: #ef4444;">
+                    <h4 style="color: #ef4444;">❌ DON'T</h4>
+                    <ul>
+                        <li>Store key next to ciphertext</li>
+                        <li>Email keys in plaintext</li>
+                        <li>Forget to save the pathway</li>
+                        <li>Use the same key for multiple encryptions</li>
+                        <li>Store keys in version control (git)</li>
+                        <li>Share keys over insecure channels</li>
+                        <li>Assume you can recover without all 3 components</li>
+                        <li>Ignore the .key file thinking you don't need it</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="warning">
+                <p><strong>⚠️ Most Common Mistake:</strong> Users encrypt data, download only the .encrypted file, and ignore the .key file. When they try to decrypt later, they realize they can't. <strong>ALWAYS download and secure BOTH files!</strong></p>
+            </div>
+        </div>
+
+        <!-- Quick Reference -->
+        <div class="card">
+            <h2>📋 Quick Reference Card</h2>
+            
+            <table>
+                <tr>
+                    <th>Action</th>
+                    <th>Command/Location</th>
+                </tr>
+                <tr>
+                    <td>Encrypt (web)</td>
+                    <td><a href="https://secure.sevencubedsevenlabs.com">secure.sevencubedsevenlabs.com</a></td>
+                </tr>
+                <tr>
+                    <td>Encrypt (API)</td>
+                    <td><code>POST /encrypt</code></td>
+                </tr>
+                <tr>
+                    <td>Decrypt (API)</td>
+                    <td><code>POST /decrypt</code></td>
+                </tr>
+                <tr>
+                    <td>Get pathway recommendation</td>
+                    <td><code>POST /pathways/recommend</code></td>
+                </tr>
+                <tr>
+                    <td>API Documentation</td>
+                    <td><a href="https://api.sevencubedsevenlabs.com/docs">api.sevencubedsevenlabs.com/docs</a></td>
+                </tr>
+                <tr>
+                    <td>Support</td>
+                    <td><a href="/cdn-cgi/l/email-protection#e0d78395828584d7a090928f948f8ece8d85"><span class="__cf_email__" data-cfemail="12257167707776255262607d667d7c3c7f77">[email&#160;protected]</span></a></td>
+                </tr>
+            </table>
+
+            <div class="success">
+                <p><strong>🎉 You're Ready!</strong> Follow these best practices and your data will be protected by 2,401 pathways of defense. If you have questions, we're here to help.</p>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div style="text-align: center; padding: 2rem; color: #64748b; font-size: 0.9rem;">
+            <p><strong>Seven Cubed Seven Labs LLC</strong></p>
+            <p>7³ × 7 = 2,401 | Patent Pending</p>
+            <p><a href="
